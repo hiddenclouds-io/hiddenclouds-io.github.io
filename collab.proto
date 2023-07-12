@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+option go_package = "hiddenclouds.io/cell/lib";
+
+message IceService {
+  int32 id = 1;
+  string urls = 2;
+  string username = 3;
+  string credential = 4;
+  int64 last_update = 5;
+}
+
+message IceServices {
+  repeated IceService list = 1;
+}
+
+message IceOffer {
+  int32 id = 1;
+  string uid = 2;
+  string metadata = 3;
+  string aid = 4;
+  string answer = 5;
+  int64 last_update = 6;
+  repeated IceCandidate candidates = 7;
+}
+
+message IceOffers {
+  repeated IceOffer list = 1;
+}
+
+message IceCandidate {
+	int32 id = 1;
+	int32 offer_id = 2;
+	string metadata = 3;
+	bool is_offer = 4;
+	int64 last_update = 5;
+}
+
+message IceCandidates {
+  repeated IceCandidate list = 1;
+}
+
+message Tenant {
+	string id = 1;
+	string metadata = 2;
+  string name = 3;
+	int64 last_update = 4;
+}
+
+message Tenants {
+  repeated Tenant list = 1;
+}
+
+message ActiveTenant {
+	string session_id = 1;
+	string bridge_id = 2;
+  string name = 3;
+	int64 last_update = 4;
+}
+
+message ActiveTenants {
+  repeated ActiveTenant list = 1;
+}
