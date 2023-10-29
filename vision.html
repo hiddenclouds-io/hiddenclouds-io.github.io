@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+  </head>
+  <body>
+    <script src= "https://player.twitch.tv/js/embed/v1.js"></script>
+<div id="vision"></div>
+<script type="text/javascript">
+  
+  var options = {
+      width: window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
+      height: window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight,
+      channel: "kyasuda2003",
+      parent: ["portal.hiddenclouds.io", "sites.google.com", "player.twitch.tv"]
+    };
+  
+  //const _v = (_options)=>{    
+    
+    const player = new Twitch.Player("vision", options);
+    player.setVolume(0.0);
+  //}
+    
+  window.addEventListener('resize', (e)=>{ 
+  
+    /*options.width = 
+      window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    options.height = 
+      window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;   */
+  });
+
+  //_v(options);
+</script>
+  </body>
+</html>
