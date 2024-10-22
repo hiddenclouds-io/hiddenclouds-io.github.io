@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+  </head>
+  <body>
+    <script type="importmap">
+      {
+        "imports": {
+          "ui/": "/portal/",
+          "core/util": "/portal/util.js",
+          "core/inori": "/portal/inori.js",
+          "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/+esm",
+          "pkg/three": "https://cdn.jsdelivr.net/npm/three@0.169.0/+esm",
+          "pkg/three/addons/": "/portal/three/jsm/",
+          "pkg/mediapipe/": "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.7/",
+          "pkg/asn1js": "https://esm.run/asn1js",
+          "pkg/pkijs": "https://esm.run/pkijs",
+          "pkg/compress/gzip": "https://cdn.jsdelivr.net/npm/pako@2.1.0/+esm",
+          "pkg/d3": "https://cdn.skypack.dev/d3@7",
+          "pkg/lit": "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js",
+          "pkg/@googlemaps/js-api-loader": "https://unpkg.com/@googlemaps/js-api-loader@1.16.8/dist/index.min.js",
+          "pkg/@xterm/xterm": "https://cdn.jsdelivr.net/npm/@xterm/xterm@5.5.0/+esm",
+          "pkg/@xterm/addon-fit": "https://cdn.jsdelivr.net/npm/@xterm/addon-fit@0.10.0/+esm"
+        }
+      }
+    </script>
+    <script src= "https://player.twitch.tv/js/embed/v1.js"></script>
+<div id="vision"></div>
+<script type="text/javascript">
+  
+  var options = {
+    width: window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
+    height: window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight,
+    channel: "hiddenclouds_io",
+    parent: ["portal.hiddenclouds.io"]
+  };
+  
+  //const _v = (_options)=>{    
+    
+    const player = new Twitch.Player("vision", options);
+    player.setVolume(0.0);
+  //}
+    
+  window.addEventListener('resize', (e)=>{ 
+  
+    /*options.width = 
+      window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    options.height = 
+      window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;   */
+  });
+
+  //_v(options);
+</script>
+  </body>
+</html>
