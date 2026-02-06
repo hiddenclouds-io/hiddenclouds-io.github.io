@@ -1,0 +1,219 @@
+syntax = "proto3";
+
+option go_package = "hiddenclouds.io/cell/lib";
+
+message Lead {
+  string contact_id = 1;
+  repeated string fragment_num = 2;
+  int32 id = 3;
+  int64 last_update = 4;
+  string sfdc_sobj_id = 5;
+  string stream_arn = 6;
+  string uid = 7;
+}
+
+message Leads {
+  repeated Lead list = 1;
+}
+
+message Subject {
+  string country = 1;
+  string organization = 2;
+  string organizational_unit = 3;
+	string locality = 4;
+  string province = 5;
+	string street_address = 6; 
+  string postal_code = 7;
+	string serial_number = 8;
+  string common_name = 9;
+  string tenant_name = 10;
+	string tenant_email = 11;
+	string tenant_role = 12;
+	string tenant_plan = 13;
+	string tenant_id = 14;
+  string tenant_phone = 15;
+  string tenant_issuer_id = 16;
+  string tenant_uri = 17;
+
+  string name = 18;
+  string title = 19;
+  string given_name = 20;
+  string initials = 21;
+  string surname = 22;
+  int64 no_before = 23;
+  int64 no_after = 24;
+  bytes metadata = 25;
+}
+
+message Subjects {
+  repeated Subject list = 1;
+}
+
+enum SqlType {
+  SQL_TYPE_NONE = 0;
+  UPDATE = 1;
+  DELETE = 2;
+  SELECT = 3;
+  INSERT = 4;  
+}
+
+message Sql {
+  string table = 1;
+  string key = 2;
+  string value = 3;
+  SqlType type = 4;
+  int32 limit = 5;
+}
+
+message Drive {
+  string file_system = 1;
+  string size = 2;
+  string used = 3;
+  string avail = 4;
+  string capacity = 5;
+  string iused = 6;
+  string ifree = 7;
+  string percent_iused = 8;
+  string mounted = 9;
+}
+
+message Device {
+  string name = 1;
+  string os = 2;
+  repeated Drive drives = 3;
+  repeated string coms = 4;
+
+}
+
+message Devices {
+  repeated Device list = 1;
+}
+
+enum FileType {  
+  FILE_TYPE_NONE = 0;
+  AUDIO = 1;
+  IMAGE = 2;
+  MISC = 3;
+  DIR = 4;
+  UNKNOWN = 5;
+  VIDEO = 6;
+  MINIMUM = 7;
+  DEVICE = 8;
+  DRIVE = 9;
+  PDF = 10;
+  ORIGIN = 11;
+  FIT = 12;
+}
+
+message FileDesc {
+  string name = 1;
+  FileType type = 2;
+  string path = 3;
+  int64 size = 4;
+  int64 last_update = 5;
+  string content_type = 6;
+  string metadata = 7;
+  string metadata1 = 8;
+  bool is_live = 9;
+}
+
+message FileDescs {
+  repeated FileDesc list = 1;
+  string pwd = 2;
+}
+
+message FileChunk {
+  string chunk_id = 1;
+  bytes chunk = 2;
+  int32 checksum = 3;
+  string metadata = 4;
+}
+
+message FileChunks {
+  repeated FileChunk list = 1;
+  string metadata = 2;
+  int32 total_chunks = 3;
+  int32 metadata_ext1 = 4;
+  string metadata_ext2 = 5;
+}
+
+message EventEmitter {
+  string target_type = 1;
+  string target_key = 2;
+  string msg_key = 3;
+  string msg_type = 4;
+}
+
+message MessageInfo {
+  string label = 1;
+  string type = 2;
+  int64  code = 3;
+  int64 last_update = 4;
+  string uid = 5;
+  repeated EventEmitter events = 6;
+}
+
+message MessageInfos {
+  repeated MessageInfo list = 1;
+}
+
+message GeoLocation {
+  string query = 1;
+  string status = 2;
+  string country = 3;
+  string country_code = 4;
+  string region = 5;
+  string region_name = 6;
+  string city = 7;
+  string zip = 8;
+  double lat = 9;
+  double lon = 10;
+  string timezone = 11;
+  string isp = 12;
+  string org = 13;
+  string as = 14;
+  string tenant_id = 15;
+  string bridge_id = 16;
+}
+
+message GeoLocations {
+  repeated GeoLocation list = 1;
+}
+
+message Scheduler {
+  string label = 1;
+  int64 last_update = 2;
+  repeated EventEmitter events = 3;
+  string metadata = 4;
+}
+
+message Schedulers {
+  repeated Scheduler list = 1;
+}
+
+message Transaction {
+  string id = 1;
+  string label = 2;
+  string category = 3;
+  int64 last_update = 4;
+  double amount = 5;
+  string metadata = 6;
+}
+
+message Transactions {
+  repeated Transaction list = 1;
+}
+
+message RTMPChannel {
+  string name = 1;
+  string api_key = 2;
+  string api_url = 3;
+  string from_session_id = 4;
+  string to_session_id = 5;
+  bool active = 6;
+  string metadata = 7;
+}
+
+message RTMPChannels {
+  repeated RTMPChannel list = 1;
+}

@@ -1,0 +1,259 @@
+syntax = "proto3";
+
+option go_package = "hiddenclouds.io/cell/lib";
+
+import "product.proto";
+
+message IceService {
+  int32 id = 1;
+  string urls = 2;
+  string username = 3;
+  string credential = 4;
+  int64 last_update = 5;
+}
+
+message IceServices {
+  repeated IceService list = 1;
+}
+
+enum ConnectionType {
+  CONN_NONE = 0;
+  CONN_PROXY = 1;
+  CONN_STREAM = 2;
+}
+
+message IceOffer {
+  string id = 1;
+  string uid = 2;
+  string metadata = 3;
+  bool bi_stream = 4;
+  string processor_id = 5;
+  string aid = 6;
+  string answer = 7;
+  int64 last_update = 8;
+  repeated IceCandidate candidates = 9;
+  ConnectionType connection_type = 10;
+}
+
+message IceOffers {
+  repeated IceOffer list = 1;
+}
+
+message IceCandidate {
+	int32 id = 1;
+	string offer_id = 2;
+	string metadata = 3;
+	bool is_offer = 4;
+	int64 last_update = 5;
+}
+
+message IceCandidates {
+  repeated IceCandidate list = 1;
+}
+
+message Contact {
+	string first_name = 2;
+  string last_name = 3;
+  string title = 4;
+  string company = 5;
+  string phone = 6;
+	string email = 7;
+	string description = 8;
+  string metadata = 9;
+  repeated string fragment_num = 10;
+}
+
+message Tenant {
+	string id = 1;
+	string metadata = 2;
+  string name = 3;
+	string runner_id = 4;
+  string runner_name = 5;
+  string op_code = 6;
+  string session_id = 7;
+	string service_id = 8;
+  string processor_id = 9;
+  Role role = 10;
+  int64 last_update = 11;
+  int64 last_activity = 12;
+  Device device = 13;
+}
+
+message Tenants {
+  repeated Tenant list = 1;
+}
+
+enum Role {
+  ROLE_NONE = 0;
+  SERVICE = 1;
+  BRIDGE = 2;
+  TENANT = 3;
+  GUEST = 4;
+  ADMIN = 5;
+  ROOT = 6;
+  REST_API = 7;
+  SHADOW = 8;
+}
+
+enum Plan {
+  PLAN_NONE = 0;
+  WIND = 1;
+  LIGHTNING = 2;
+  UMBRELLA = 3;
+  EARTH = 4;
+  MOON = 5;
+  SUN = 6;
+  SEA = 7;
+  GOD = 8;
+}
+
+message ActiveTenant {  
+  string id = 1;
+	string session_id = 2;
+	string service_id = 3;
+  string processor_id = 4;
+  string runner_id = 5;
+  string runner_name = 6;
+  string op_code = 7;
+  string name = 8;
+	int64 last_update = 9;
+  int64 last_activity = 10;
+  Role role = 11;
+  string metadata = 12;
+  Device device = 13;
+}
+
+message ActiveTenants {
+  repeated ActiveTenant list = 1;
+}
+
+enum MessageType {
+  MESSAGE_TYPE_NONE = 0;
+  SMTP = 1;
+  IVR = 2;
+  INIT_PMT = 3;
+  SMS = 4;
+}
+
+message TenantMessage {  
+  string id = 1;
+	string from = 2;
+	string to = 3;
+  string data = 4;
+	int64 last_update = 5;
+  MessageType message_type = 6;
+}
+
+enum ProcessorStatus {
+  PROCESSOR_STATUS_NONE = 0;
+  STOP = 1;
+  PAUSE = 2;
+  STREAM = 3;
+  PIPE = 4;
+  SETUP = 5;
+  DELETED = 6;
+  LIVE = 7;
+  INIT = 8;
+}
+
+enum HardwareVendor {
+  HARDWARE_VENDOR_NONE = 0;
+  KASA = 1;
+  RING = 2;
+}
+
+message Processor {
+  string id = 1;
+  string name = 2;
+  string remote_id = 3;
+  string session_id = 4;
+  string screenshot = 5;
+  string metadata = 6;
+  int32 width = 7;
+  int32 height = 8;
+  int64 last_update = 9;
+  HardwareVendor vendor = 10;
+  ProcessorStatus status = 11;
+}
+
+message Processors {
+  int32 total_num_of_page = 1;
+  int32 page_index = 2;
+  int32 total_num_per_page = 3;
+  repeated Processor list = 4;
+}
+
+enum Command {
+  COMMAND_NONE = 0;
+  STOP_RECORDING = 1;
+  START_RECORDING = 2;
+  START_OD = 3;
+  STOP_OD = 4;
+  REGISTER_PROCESSOR = 5;
+  START_OD_DATA_ONLY = 6;
+  LANDSCAPE_VIEW = 7;
+  PORTRAIT_VIEW = 8;
+  DELETE_STREAM = 9;
+  SWITCH_PROCESSOR = 10;
+  PAUSE_REPLAY = 11;
+  RESUME_REPLAY = 12;
+  DELETE_RECORDING = 13;
+  STANDBY = 14;
+  LIVE_PROCESSOR = 15;
+  SHUTDOWN = 16;
+  START_BINARY = 17;
+  STOP_BINARY = 18;
+  LIVE_STREAM = 19;
+  START_LIVE_CAM = 20;
+  STOP_LIVE_CAM = 21;
+  REBOOT_CTRL = 22;
+  STOP_CTRL = 23;
+  START_CAST = 24;
+
+  CTRL_UP = 25;
+  CTRL_DW = 26;
+  CTRL_LT = 27;
+  CTRL_RT = 28;
+
+  SWITCH_FD = 29;
+
+  EVT_VIDEO_CREATED = 30;
+}
+
+message Action {
+  Command command = 1;
+  Setting setting = 2;
+}
+
+message Setting {
+  string processor_id = 1;
+  bool is_recording = 2;
+  bool is_od = 3;
+  bool is_landscape = 4;
+  bool is_live = 5;
+  string metadata = 6;
+  int32 metadata_ext1 = 7;
+  string metadata_ext2 = 8;
+  int32 metadata_ext3 = 9;
+  string metadata_ext4 = 10;
+  string metadata_ext5 = 11;
+  int64 metadata_ext6 = 12;
+  int64 metadata_ext7 = 13;
+}
+
+message Prediction {
+  repeated float bbox = 1;
+  string class = 2;
+  float score = 3;
+}
+
+message Predictions {
+  repeated Prediction list = 1;
+  int32 width = 2;
+  int32 height = 3;
+  int64 frameNo = 4;
+}
+
+message AppMetricsKeys {
+  repeated string keys = 1;
+}
