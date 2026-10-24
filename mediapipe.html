@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>mediapipe workaround</title>
+</head>
+<body>
+    <script type="importmap">
+      {
+        "imports": {
+          "ui/": "/portal/",
+          "core/util": "/portal/util.js",
+          "core/inori": "/portal/inori.js",
+          "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/+esm",
+          "pkg/three": "https://cdn.jsdelivr.net/npm/three@0.169.0/+esm",
+          "pkg/three/addons/": "/portal/three/jsm/",
+          "pkg/mediapipe/": "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.7/",
+          "pkg/asn1js": "https://esm.run/asn1js",
+          "pkg/pkijs": "https://esm.run/pkijs",
+          "pkg/compress/gzip": "https://cdn.jsdelivr.net/npm/pako@2.1.0/+esm",
+          "pkg/d3": "https://cdn.jsdelivr.net/npm/d3@7/+esm",
+          "pkg/lit": "https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js",
+          "pkg/@googlemaps/js-api-loader": "https://unpkg.com/@googlemaps/js-api-loader@1.16.8/dist/index.min.js",
+          "pkg/@xterm/xterm": "https://cdn.jsdelivr.net/npm/@xterm/xterm@5.5.0/+esm",
+          "pkg/@xterm/addon-fit": "https://cdn.jsdelivr.net/npm/@xterm/addon-fit@0.10.0/+esm"
+        }
+      }
+      </script>
+    <script>
+        const channel = new BroadcastChannel('broadcase_channel');
+        channel.onmessage = (event) => {
+            console.log(event.data);
+        };
+    </script>
+</body>
+</html>

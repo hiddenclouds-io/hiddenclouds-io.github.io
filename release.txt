@@ -1,0 +1,1 @@
+cell.wasm_ver=0.2.1
