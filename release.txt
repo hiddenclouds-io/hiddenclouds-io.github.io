@@ -1,0 +1,2 @@
+cell.wasm_ver=0.2.5
+portal-webui_ver=0.2.2
